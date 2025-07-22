@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naruto Feliz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-orange-100 to-yellow-200 min-h-screen flex items-center justify-center">
+  <main class="text-center space-y-6 p-6 bg-white/70 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <h1 class="text-4xl font-bold text-orange-600">¡Feliz Cumpleaños!</h1>
+    <p class="text-lg text-gray-700">Haz clic para escuchar a Naruto</p>
+    
+    <!-- Botón para reproducir -->
+    <button 
+      onclick="document.getElementById('happyAudio').play()"
+      class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full text-xl shadow-md transition-transform hover:scale-105"
+    >
+      ▶ Escuchar a Naruto
+    </button>
+
+    <!-- Botón para Continuar -->
+    <a 
+      href="Seleccion de estado de animo.html"
+      class="block bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-full text-lg shadow-md transition-transform hover:scale-105"
+    >
+      Continuar →
+    </a>
+
+    <!-- Elemento de audio -->
+    <audio id="happyAudio" src="Audios. Voz de naruto/Latino.wav"></audio>
+  </main>
+</body>
+</html>
+
