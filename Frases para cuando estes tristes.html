@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frases de Naruto - Ánimo Triste</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-500 text-white font-sans min-h-screen flex flex-col">
+  <div id="main" class="flex flex-col items-center justify-center flex-grow p-4">
+    <h1 class="text-3xl md:text-5xl font-bold mb-6 text-center">Frases para un mal día</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-4xl justify-center">
+      <!-- Frases listadas aquí -->
+    </div>
+  </div>
+
+  <div id="phraseScreen" class="hidden flex flex-col items-center justify-center flex-grow p-4">
+    <div class="bg-white text-black rounded-2xl shadow-2xl p-6 max-w-xl text-center w-full">
+      <p id="phraseText" class="text-xl font-semibold mb-6"></p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+        <button onclick="playAudio('es')" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full transition-all">🎧 Escuchar en Español</button>
+        <button onclick="playAudio('jp')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-all">🎧 Escuchar en Japonés</button>
+      </div>
+      <button onclick="goBack()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-all">⬅ Volver a Frases</button>
+    </div>
+  </div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    const phrases = [
+      {
+        text: "Incluso en la noche más oscura, una chispa de esperanza arde.",
+        es: "Audios. Voz de naruto/Frase 1 - Triste.wav",
+        jp: "audio/triste_1_jp.wav"
+      },
+      {
+        text: "La tristeza no te define, te moldea para ser más fuerte.",
+        es: "Audios. Voz de naruto/Frase 2 - Triste.wav",
+        jp: "audio/triste_2_jp.wav"
+      },
+      {
+        text: "No estás solo. Siempre habrá alguien que crea en ti.",
+        es: "Audios. Voz de naruto/Frases 3 - Triste.wav",
+        jp: "audio/triste_3_jp.wav"
+      },
+      {
+        text: "Permítete llorar, así florecen las almas valientes.",
+        es: "Audios. Voz de naruto/Frases 4 - Triste.wav",
+        jp: "audio/triste_4_jp.wav"
+      },
+      {
+        text: "Sigue caminando, aunque sea con lágrimas en los ojos.",
+        es: "Audios. Voz de naruto/Frases 5 - Triste.wav",
+        jp: "audio/triste_5_jp.wav"
+      },
+      {
+        text: "El dolor también puede ser un maestro inteligente.",
+        es: "Audios. Voz de naruto/Frases 6 - Triste.wav",
+        jp: "audio/triste_7_jp.wav"
+      },
+      {
+        text: "Tu valor no se borra por un mal día, se forja más.",
+        es: "Audios. Voz de naruto/Frases 7 - Triste.wav",
+        jp: "audio/triste_9_jp.wav"
+      },
+      {
+        text: "La oscuridad también necesita luz: tú eres esa luz.",
+        es: "Audios. Voz de naruto/Frases 8 - Triste.wav",
+        jp: "audio/triste_10_jp.wav"
+      },
+      {
+        text: "Hakuna Matatta.",
+        es: "Audios. Voz de naruto/Frases 9 - Triste.wav",
+        jp: "audio/triste_10_jp.wav"
+      }
+    ];
+
+    const main = document.getElementById('main');
+    const phraseScreen = document.getElementById('phraseScreen');
+    const phraseText = document.getElementById('phraseText');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    function openPhrase(index) {
+      const phrase = phrases[index];
+      phraseText.innerText = phrase.text;
+      phraseScreen.classList.remove('hidden');
+      main.classList.add('hidden');
+      audioPlayer.dataset.es = phrase.es;
+      audioPlayer.dataset.jp = phrase.jp;
+    }
+
+    function goBack() {
+      phraseScreen.classList.add('hidden');
+      main.classList.remove('hidden');
+      audioPlayer.pause();
+    }
+
+    function playAudio(lang) {
+      const src = audioPlayer.dataset[lang];
+      if (src) {
+        audioPlayer.src = src;
+        audioPlayer.play();
+      }
+    }
+
+    // Generar tarjetas de frases
+    const container = document.querySelector('#main .grid');
+    phrases.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'bg-white text-orange-700 hover:bg-gray-100 font-semibold py-3 px-5 rounded-xl shadow-md transition-all';
+      btn.textContent = `Frase ${i + 1}`;
+      btn.onclick = () => openPhrase(i);
+      container.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
