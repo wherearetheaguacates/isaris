@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frases de Naruto - Ánimo Normal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-500 text-white font-sans min-h-screen flex flex-col">
+  <div id="main" class="flex flex-col items-center justify-center flex-grow p-4">
+    <h1 class="text-3xl md:text-5xl font-bold mb-6 text-center">Frases para un día normal</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-5xl justify-items-center">
+      <!-- Frases listadas aquí -->
+    </div>
+  </div>
+
+  <div id="phraseScreen" class="hidden fixed inset-0 flex flex-col items-center justify-center p-4 bg-orange-500">
+    <div class="bg-white text-black rounded-xl shadow-lg p-6 max-w-xl text-center">
+      <p id="phraseText" class="text-lg font-medium mb-4"></p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="playAudio('es')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Escuchar en Español</button>
+        <button onclick="playAudio('jp')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Escuchar en Japonés</button>
+      </div>
+      <button onclick="goBack()" class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Volver</button>
+    </div>
+  </div>
+  </div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    const phrases = [
+      {
+        text: "Hoy es un buen momento para mirar el cielo y respirar.",
+        es: "Audios. Voz de naruto/Frases 1 - Normal.wav",
+        jp: "audio/normal_1_jp.wav"
+      },
+      {
+        text: "Lo cotidiano tambien guarda pequenas sorpresas.",
+        es: "Audios. Voz de naruto/Frases 2 - Normal.wav",
+        jp: "audio/normal_3_jp.wav"
+      },
+      {
+        text: "La calma es también un regalo valioso.",
+        es: "Audios. Voz de naruto/Frases 3 - Normal.wav",
+        jp: "audio/normal_4_jp.wav"
+      },
+      {
+        text: "Recuerda que cada dia es una nueva oportunidad.",
+        es: "Audios. Voz de naruto/Frases 4 - Normal.wav",
+        jp: "audio/normal_5_jp.wav"
+      },
+      {
+        text: "A veces el simple hecho de estar es suficiente.",
+        es: "Audios. Voz de naruto/Frases 5 - Normal.wav",
+        jp: "audio/normal_6_jp.wav"
+      },
+      {
+        text: "Disfruta el momento sin presionarte a sentir más.",
+        es: "Audios. Voz de naruto/Frases 6 - Normal.wav",
+        jp: "audio/normal_7_jp.wav"
+      },
+      {
+        text: "Hoy no necesitas hacer nada especial. Solo estar.",
+        es: "Audios. Voz de naruto/Frases 7 - Normal.wav",
+        jp: "audio/normal_8_jp.wav"
+      },
+      {
+        text: "Caminar sin rumbo también puede ser valioso.",
+        es: "Audios. Voz de naruto/Frases 8 - Normal.wav",
+        jp: "audio/normal_9_jp.wav"
+      },
+      {
+        text: "a veces, la tranquilidad es el mejor aliado.",
+        es: "Audios. Voz de naruto/Frases 9 - Normal.wav",
+        jp: "audio/normal_9_jp.wav"
+      },
+    ];
+
+    const main = document.getElementById('main');
+    const phraseScreen = document.getElementById('phraseScreen');
+    const phraseText = document.getElementById('phraseText');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    function openPhrase(index) {
+      const phrase = phrases[index];
+      phraseText.innerText = phrase.text;
+      phraseScreen.classList.remove('hidden');
+      main.classList.add('hidden');
+      audioPlayer.dataset.es = phrase.es;
+      audioPlayer.dataset.jp = phrase.jp;
+    }
+
+    function goBack() {
+      phraseScreen.classList.add('hidden');
+      main.classList.remove('hidden');
+      audioPlayer.pause();
+    }
+
+    function playAudio(lang) {
+      const src = audioPlayer.dataset[lang];
+      if (src) {
+        audioPlayer.src = src;
+        audioPlayer.play();
+      }
+    }
+
+    // Generar tarjetas de frases
+    const container = document.querySelector('#main .grid');
+    phrases.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'bg-white text-orange-700 hover:bg-gray-100 font-semibold py-3 px-5 rounded-xl shadow-md transition-all';
+      btn.textContent = `Frase ${i + 1}`;
+      btn.onclick = () => openPhrase(i);
+      container.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
